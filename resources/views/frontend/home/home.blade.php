@@ -135,7 +135,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 var swiper = new Swiper(".reviewSwiper", {
                     slidesPerView: 1,
                     spaceBetween: 20,
