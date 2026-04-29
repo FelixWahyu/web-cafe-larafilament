@@ -58,7 +58,7 @@
                     <div class="flex overflow-x-auto gap-8 pb-8 snap-x no-scrollbar scroll-smooth">
                         @foreach ($banners as $banner)
                             <div class="min-w-[300px] md:min-w-[600px] snap-center group">
-                                <div class="relative overflow-hidden rounded-4xl shadow-2xl aspect-[16/9]">
+                                <div class="relative overflow-hidden rounded-lg shadow-2xl aspect-[16/9]">
                                     <img src="{{ asset('storage/' . $banner->image_path) }}" alt="Promo {{ $loop->iteration }}"
                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                                     <div
@@ -87,7 +87,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div
-                    class="group p-10 bg-surface rounded-4xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
+                    class="group p-10 bg-surface rounded-lg shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
                     <div
                         class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-colors duration-500">
                         <i class="fas fa-coffee"></i>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div
-                    class="group p-10 bg-surface rounded-4xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
+                    class="group p-10 bg-surface rounded-lg shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
                     <div
                         class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-colors duration-500">
                         <i class="fas fa-wifi"></i>
@@ -109,7 +109,7 @@
                 </div>
 
                 <div
-                    class="group p-10 bg-surface rounded-4xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
+                    class="group p-10 bg-surface rounded-lg shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
                     <div
                         class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-colors duration-500">
                         <i class="fas fa-smile"></i>
@@ -150,7 +150,8 @@
                 <div class="swiper-wrapper">
                     @forelse(\App\Models\GeneralReview::where('is_approved', true)->latest()->get() as $rev)
                         <div class="swiper-slide h-auto">
-                            <div class="p-8 bg-secondary/50 rounded-4xl h-full flex flex-col border border-dark/5 shadow-sm transition-all hover:shadow-xl hover:bg-surface group min-h-[250px]">
+                            <div
+                                class="p-8 mb-6 bg-secondary/50 rounded-4xl h-full flex flex-col border border-dark/5 shadow-sm transition-all hover:shadow-xl hover:bg-surface group min-h-[250px]">
                                 <div class="flex items-center gap-5 mb-8">
                                     <div
                                         class="w-16 h-16 shrink-0 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl shadow-inner uppercase transition-colors group-hover:bg-primary group-hover:text-surface">
@@ -163,7 +164,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="italic text-dark/80 leading-relaxed text-lg break-all overflow-hidden">"{{ $rev->review }}"</p>
+                                <p class="italic text-dark/80 leading-relaxed text-lg break-all overflow-hidden">
+                                    "{{ $rev->review }}"</p>
                             </div>
                         </div>
                     @empty
@@ -173,7 +175,7 @@
                         </div>
                     @endforelse
                 </div>
-                <div class="swiper-pagination mt-10"></div>
+                <div class="swiper-pagination mt-10 -mb-1"></div>
             </div>
         </div>
 
@@ -201,8 +203,7 @@
                     </div>
 
                     <div>
-                        <label
-                            class="block text-dark text-sm font-bold mb-3 uppercase tracking-wider">Ulasan</label>
+                        <label class="block text-dark text-sm font-bold mb-3 uppercase tracking-wider">Ulasan</label>
                         <textarea name="review" rows="5" required
                             class="w-full px-6 py-4 rounded-2xl bg-secondary/50 border border-dark/10 focus:border-primary focus:bg-surface outline-none transition-all"
                             placeholder="Tuliskan komentar Anda di sini..."></textarea>
