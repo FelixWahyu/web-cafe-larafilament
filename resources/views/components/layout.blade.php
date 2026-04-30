@@ -17,6 +17,7 @@
         content="{{ $description ?? 'Lav Cafe adalah tempat nongkrong nyaman dengan sajian kopi dan menu terbaik di Purwokerto. Nikmati suasana modern dan santai bersama kami.' }}">
     <meta name="keywords" content="cafe purwokerto, kopi purwokerto, tempat nongkrong, lav cafe, kuliner purwokerto">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" type="image/png" href="{{ asset('storage/' . ($setting?->logo ?? 'default-logo.png')) }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -105,6 +106,10 @@
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </body>

@@ -61,18 +61,6 @@ class SettingResource extends Resource
         ];
     }
 
-    public static function canCreate(): bool
-    {
-        // Menghilangkan tombol 'New Setting'
-        return false;
-    }
-
-    public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
-    {
-        // Mencegah pengaturan dihapus
-        return false;
-    }
-
     public static function canDeleteAny(): bool
     {
         // Mencegah hapus massal (bulk delete)
