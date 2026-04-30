@@ -10,18 +10,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Optimization -->
     <title>{{ $cafeName }} | {{ $title ?? 'Tempat Nongkrong Terbaik di Purwokerto' }}</title>
-    <meta name="description" content="{{ $description ?? 'Lav Cafe adalah tempat nongkrong nyaman dengan sajian kopi dan menu terbaik di Purwokerto. Nikmati suasana modern dan santai bersama kami.' }}">
+    <meta name="description"
+        content="{{ $description ?? 'Lav Cafe adalah tempat nongkrong nyaman dengan sajian kopi dan menu terbaik di Purwokerto. Nikmati suasana modern dan santai bersama kami.' }}">
     <meta name="keywords" content="cafe purwokerto, kopi purwokerto, tempat nongkrong, lav cafe, kuliner purwokerto">
     <link rel="canonical" href="{{ url()->current() }}">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $cafeName }} | {{ $title ?? 'Tempat Nongkrong Terbaik' }}">
-    <meta property="og:description" content="{{ $description ?? 'Nikmati momen istimewa dengan aroma kopi terbaik di Lav Cafe Purwokerto.' }}">
+    <meta property="og:description"
+        content="{{ $description ?? 'Nikmati momen istimewa dengan aroma kopi terbaik di Lav Cafe Purwokerto.' }}">
     <meta property="og:image" content="{{ asset('storage/' . ($setting?->logo ?? 'default-logo.png')) }}">
 
     <!-- Twitter -->
@@ -37,17 +39,21 @@
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 
 <body class="bg-secondary text-dark antialiased font-sans">
 
     @include('components.navbar')
-    
+
     <main id="main-content">
         {{ $slot }}
     </main>
@@ -55,9 +61,11 @@
     <footer class="bg-dark text-secondary pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="col-span-1 md:col-span-2">
-                <h3 class="font-heading font-bold text-3xl mb-6 text-primary">{{ $cafeName }}</h3>
+                <h3 class="font-heading font-bold text-3xl mb-6 text-primary">
+                    {{ $cafeName }}</h3>
                 <p class="text-lg opacity-80 max-w-md leading-relaxed">
-                    Tempat nongkrong nyaman dengan sajian menu terbaik di Purwokerto. Kami berkomitmen memberikan pengalaman kuliner yang tak terlupakan.
+                    Tempat nongkrong nyaman dengan sajian menu terbaik di Purwokerto. Kami berkomitmen memberikan
+                    pengalaman kuliner yang tak terlupakan.
                 </p>
             </div>
             <div>
@@ -75,15 +83,17 @@
                     <p>WhatsApp: +{{ $setting?->whatsapp ?? '628xxx' }}</p>
                 </div>
                 <div class="flex space-x-6 text-2xl">
-                    @if($setting?->instagram) 
-                        <a href="{{ $setting->instagram }}" target="_blank" class="text-secondary hover:text-primary transition" aria-label="Instagram">
+                    @if ($setting?->instagram)
+                        <a href="{{ $setting->instagram }}" target="_blank"
+                            class="text-secondary hover:text-primary transition" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
-                        </a> 
+                        </a>
                     @endif
-                    @if($setting?->tiktok) 
-                        <a href="{{ $setting->tiktok }}" target="_blank" class="text-secondary hover:text-primary transition" aria-label="TikTok">
+                    @if ($setting?->tiktok)
+                        <a href="{{ $setting->tiktok }}" target="_blank"
+                            class="text-secondary hover:text-primary transition" aria-label="TikTok">
                             <i class="fab fa-tiktok"></i>
-                        </a> 
+                        </a>
                     @endif
                 </div>
             </div>

@@ -4,8 +4,8 @@
         <div class="flex justify-between items-center">
 
             <!-- Logo -->
-            <div class="flex-shrink-0 flex items-center gap-3">
-                @if($setting?->logo)
+            <div class="shrink-0 flex items-center gap-3">
+                @if ($setting?->logo)
                     <img src="{{ asset('storage/' . $setting->logo) }}" alt="Logo {{ $cafeName }}"
                         class="h-10 w-10 rounded-full object-cover border-2 border-primary/30">
                 @else
@@ -15,26 +15,26 @@
                     </div>
                 @endif
                 <a href="{{ route('home') }}" class="text-2xl font-heading font-bold text-dark tracking-tight">
-                    <span class="text-primary">Lav</span> Cafe
+                    <span class="text-primary">{{ substr($cafeName, 0, 6) }}</span> {{ substr($cafeName, 7, 11) }}
                 </a>
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-10">
                 <a href="{{ route('home') }}"
-                    class="text-dark/70 hover:text-primary font-medium transition-colors relative group">
+                    class="hover:text-primary {{ request()->routeIs('home') ? 'text-primary' : 'text-dark/70' }} font-medium transition-colors relative group">
                     Home
                     <span
                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                 </a>
                 <a href="{{ route('catalog') }}"
-                    class="text-dark/70 hover:text-primary font-medium transition-colors relative group">
+                    class="hover:text-primary {{ request()->routeIs('catalog') ? 'text-primary' : 'text-dark/70' }} font-medium transition-colors relative group">
                     Katalog
                     <span
                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                 </a>
                 <a href="{{ route('contact') }}"
-                    class="text-dark/70 hover:text-primary font-medium transition-colors relative group">
+                    class="hover:text-primary {{ request()->routeIs('contact') ? 'text-primary' : 'text-dark/70' }} font-medium transition-colors relative group">
                     Kontak
                     <span
                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
@@ -57,12 +57,13 @@
                 <!-- Mobile Menu Button -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
                     class="md:hidden p-2 text-dark/70 hover:text-primary transition-colors" aria-label="Toggle Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-show="!mobileMenuOpen">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        x-show="!mobileMenuOpen">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-show="mobileMenuOpen"
-                        x-cloak>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        x-show="mobileMenuOpen" x-cloak>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
                     </svg>
@@ -76,14 +77,14 @@
     <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 -translate-y-4" class="md:hidden glass border-t border-dark/5" x-cloak>
-        <div class="px-4 pt-2 pb-6 space-y-2">
+        x-transition:leave-end="opacity-0 -translate-y-4" class="md:hidden glass mt-2 border-t border-dark/5" x-cloak>
+        <div class="px-4 pt-2 pb-6 mt-2 space-y-2">
             <a href="{{ route('home') }}"
-                class="block px-4 py-3 text-dark/70 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors">Home</a>
+                class="block px-4 py-3 {{ request()->routeIs('home') ? 'text-primary bg-primary/10' : 'text-dark/70' }} hover:bg-primary/10 hover:text-primary rounded-xl transition-colors">Home</a>
             <a href="{{ route('catalog') }}"
-                class="block px-4 py-3 text-dark/70 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors">Katalog</a>
+                class="block px-4 py-3 {{ request()->routeIs('catalog') ? 'text-primary bg-primary/10' : 'text-dark/70' }} hover:bg-primary/10 hover:text-primary rounded-xl transition-colors">Katalog</a>
             <a href="{{ route('contact') }}"
-                class="block px-4 py-3 text-dark/70 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors">Kontak</a>
+                class="block px-4 py-3 {{ request()->routeIs('contact') ? 'text-primary bg-primary/10' : 'text-dark/70' }} hover:bg-primary/10 hover:text-primary rounded-xl transition-colors">Kontak</a>
         </div>
     </div>
 </nav>
