@@ -33,7 +33,7 @@ class CatalogController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
-            'review' => 'required|string',
+            'review' => 'required|string|max:1000',
         ]);
 
         $this->catalogService->storeReview($validated, $slug);

@@ -1,5 +1,6 @@
-<nav x-data="{ mobileMenuOpen: false }" class="glass sticky top-0 z-50 transition-all duration-300"
-    :class="{ 'py-2': window.scrollY > 20, 'py-4': window.scrollY <= 20 }">
+<nav x-data="{ mobileMenuOpen: false, scrolled: false }" @scroll.window="scrolled = (window.scrollY > 20)"
+    class="glass sticky top-0 z-50 transition-all duration-300"
+    :class="{ 'py-2': scrolled, 'py-4': !scrolled }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center">
 

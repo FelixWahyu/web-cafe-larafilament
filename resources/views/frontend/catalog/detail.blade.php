@@ -205,43 +205,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     @foreach($relatedProducts as $rel)
-                        <div
-                            class="group bg-surface rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-dark/5 shadow-sm hover:shadow-xl flex flex-col h-full">
-                            <a href="{{ route('product.detail', $rel->slug) }}"
-                                class="block relative overflow-hidden aspect-square rounded-t-3xl">
-                                <img src="{{ asset('storage/' . ($rel->images->first()?->image_path ?? 'default.jpg')) }}"
-                                    alt="{{ $rel->name }}"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                <div
-                                    class="absolute inset-0 bg-dark/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                                    <span class="bg-surface text-dark px-6 py-2 rounded-full font-bold text-sm shadow-xl">Lihat
-                                        Detail</span>
-                                </div>
-                            </a>
-                            <div class="p-6 flex flex-col flex-1">
-                                <div class="mb-2">
-                                    <h3
-                                        class="font-heading font-bold text-dark text-xl group-hover:text-primary transition-colors leading-tight line-clamp-1">
-                                        {{ $rel->name }}
-                                    </h3>
-                                </div>
-                                <p class="text-dark/60 text-sm mb-6 line-clamp-2 flex-1">{{ $rel->description }}</p>
-
-                                <div class="flex flex-row items-center justify-between mt-auto">
-                                    <div class="flex flex-col">
-                                        <span class="text-[10px] uppercase tracking-widest text-dark/40 font-bold">Harga</span>
-                                        <p class="text-primary font-bold text-lg">
-                                            <span class="text-xs font-medium">Rp</span>
-                                            {{ number_format($rel->price, 0, ',', '.') }}
-                                        </p>
-                                    </div>
-                                    <button
-                                        class="text-primary cursor-pointer transition-all duration-300 transform hover:scale-110 active:scale-95">
-                                        <i class="fas fa-plus-circle text-5xl"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <x-product-card :product="$rel" />
                     @endforeach
                 </div>
             </div>
