@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductReview;
 
 class CatalogService
 {
@@ -47,5 +48,18 @@ class CatalogService
             ->get();
 
         return compact('product', 'relatedProducts');
+    }
+
+    public function storeReview(array $data, $slug)
+    {
+        $product = Product::where('slug', $slug)->firstOrFail();
+
+        return ProductReview::create([
+            'product_id' => $product->id,
+            'name' => $data['name'],
+            'rating' => $data['rating'],
+            'review' => $data['review'],
+            'is_approved' => true, // Auto-approve for now as requested
+        ]);
     }
 }

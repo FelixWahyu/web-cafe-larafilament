@@ -11,3 +11,4 @@ Route::get('/produk/{slug}', [CatalogController::class, 'show'])->name('product.
 Route::get('/kontak', [ContactController::class, 'contact'])->name('contact');
 
 Route::post('/review', [HomeController::class, 'storeReview'])->name('review.store');
+Route::post('/produk/{slug}/review', [CatalogController::class, 'storeReview'])->name('product.review.store');

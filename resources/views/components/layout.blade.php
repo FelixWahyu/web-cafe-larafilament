@@ -1,6 +1,6 @@
 @php
-    // Mengambil data setting langsung di layout agar tersedia di semua halaman
-    $setting = \App\Models\Setting::first();
+    // Mengambil data setting dengan cache agar efisien
+    $setting = Cache::remember('cafe_setting', 3600, fn() => \App\Models\Setting::first());
     $cafeName = $setting?->business_name ?? 'Lav Cafe';
 @endphp
 
@@ -17,6 +17,7 @@
         content="{{ $description ?? 'Lav Cafe adalah tempat nongkrong nyaman dengan sajian kopi dan menu terbaik di Purwokerto. Nikmati suasana modern dan santai bersama kami.' }}">
     <meta name="keywords" content="cafe purwokerto, kopi purwokerto, tempat nongkrong, lav cafe, kuliner purwokerto">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" type="image/png" href="{{ asset('storage/' . ($setting?->logo ?? 'default-logo.png')) }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -31,10 +32,17 @@
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="{{ $cafeName }}">
     <meta property="twitter:description" content="Tempat nongkrong nyaman dengan sajian menu terbaik di Purwokerto.">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
 
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +70,8 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="col-span-1 md:col-span-2">
                 <h3 class="font-heading font-bold text-3xl mb-6 text-primary">
-                    {{ $cafeName }}</h3>
+                    {{ $cafeName }}
+                </h3>
                 <p class="text-lg opacity-80 max-w-md leading-relaxed">
                     Tempat nongkrong nyaman dengan sajian menu terbaik di Purwokerto. Kami berkomitmen memberikan
                     pengalaman kuliner yang tak terlupakan.
@@ -103,10 +112,8 @@
         </div>
     </footer>
 
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</body>
-
+    <!-- Swiper.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>

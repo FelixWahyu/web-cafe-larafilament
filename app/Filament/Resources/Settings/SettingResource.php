@@ -63,8 +63,8 @@ class SettingResource extends Resource
 
     public static function canCreate(): bool
     {
-        // Menghilangkan tombol 'New Setting'
-        return false;
+        // Menghilangkan tombol 'New Setting' karena ini singleton
+        return Setting::count() < 1;
     }
 
     public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool

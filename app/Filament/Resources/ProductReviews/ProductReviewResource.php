@@ -57,7 +57,7 @@ class ProductReviewResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return ProductReviewsTable::configure($table)->columns([
+        return $table->columns([
             TextColumn::make('product.name')
                 ->label('Produk')
                 ->sortable()

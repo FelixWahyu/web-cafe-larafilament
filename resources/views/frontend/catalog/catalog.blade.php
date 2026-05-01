@@ -51,44 +51,8 @@
             <!-- Product Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @forelse($products as $product)
-                    <div x-show="(category === 'all' || category === '{{ $product->category_id }}') && '{{ strtolower($product->name) }}'.includes(search.toLowerCase())"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                        class="group bg-surface rounded-md overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-dark/5">
-
-                        <a href="{{ route('product.detail', $product->slug) }}"
-                            class="block relative overflow-hidden aspect-square">
-                            <img src="{{ asset('storage/' . ($product->images->first()?->image_path ?? 'default.jpg')) }}"
-                                alt="{{ $product->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div
-                                class="absolute inset-0 bg-dark/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                                <span
-                                    class="bg-surface text-dark px-6 py-2 rounded-full font-bold text-sm shadow-xl">Lihat
-                                    Detail</span>
-                            </div>
-                        </a>
-
-                        <div class="px-8 py-4">
-                            <div class="flex justify-between items-start mb-2.5">
-                                <h3
-                                    class="font-heading font-bold text-dark text-xl group-hover:text-primary transition-colors leading-tight">
-                                    {{ $product->name }}
-                                </h3>
-                            </div>
-                            <p class="mb-6 line-clamp-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea,
-                                eum?</p>
-                            <div class="flex flex-row items-center justify-between">
-                                <p class="text-primary font-bold text-md mb-6 flex items-center gap-1">
-                                    <span class="text-sm font-medium">Rp</span>
-                                    {{ number_format($product->price, 0, ',', '.') }}
-                                </p>
-                                <button
-                                    class="bg-secondary text-primary p-4 rounded-xl cursor-pointer font-bold hover:bg-primary hover:text-surface transition-all duration-300 flex items-center justify-center group/btn">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div x-show="(category === 'all' || category === '{{ $product->category_id }}') && '{{ strtolower($product->name) }}'.includes(search.toLowerCase())">
+                        <x-product-card :product="$product" />
                     </div>
                 @empty
                     <div

@@ -49,38 +49,60 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex items-end justify-between mb-16">
                     <div>
-                        <h2 class="text-4xl font-heading font-bold text-dark mb-4">Promo Spesial</h2>
+                        <h2 class="text-4xl font-heading font-bold text-dark mb-4">Promo <span
+                                class="text-primary">Spesial</span></h2>
                         <p class="text-dark/60">Jangan lewatkan penawaran menarik kami minggu ini.</p>
                     </div>
                 </div>
 
-                <div class="relative">
-                    <div class="flex overflow-x-auto gap-8 pb-8 snap-x no-scrollbar scroll-smooth">
-                        @foreach ($banners as $banner)
-                            <div class="min-w-75 md:min-w-150 snap-center group">
-                                <div class="relative overflow-hidden rounded-lg shadow-2xl aspect-video">
-                                    <img src="{{ asset('storage/' . $banner->image_path) }}"
-                                        alt="Promo {{ $loop->iteration }}"
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                    <div
-                                        class="absolute inset-0 bg-linear-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
-                                        <div class="text-surface">
-                                            <h3 class="text-2xl font-bold mb-2">Penawaran Eksklusif</h3>
-                                            <p class="opacity-80">Klik untuk melihat detail menu promo.</p>
+                <div class="relative group">
+                    <div class="swiper promoSwiper !pb-14 overflow-visible">
+                        <div class="swiper-wrapper">
+                            @foreach ($banners as $banner)
+                                <div class="swiper-slide h-auto">
+                                    <div class="relative overflow-hidden rounded-3xl shadow-xl aspect-video group/item">
+                                        <img src="{{ asset('storage/' . $banner->image_path) }}"
+                                            alt="Promo {{ $loop->iteration }}"
+                                            class="w-full h-full object-cover transition-transform duration-1000 group-hover/item:scale-110">
+                                        <div
+                                            class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-all duration-500 flex items-end p-8">
+                                            <div
+                                                class="text-surface translate-y-8 group-hover/item:translate-y-0 transition-transform duration-500 delay-100">
+                                                <span
+                                                    class="inline-block px-3 py-1 rounded-full bg-primary text-[10px] font-bold uppercase tracking-widest mb-3">Limited
+                                                    Offer</span>
+                                                <h3 class="text-2xl font-bold mb-2">Penawaran Eksklusif</h3>
+                                                <p class="opacity-80 text-sm max-w-xs line-clamp-2">Nikmati menu spesial kami
+                                                    dengan harga terbaik khusus minggu ini.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
+                        <div class="swiper-pagination promo-pagination mb-4 !-bottom-2"></div>
                     </div>
+
+                    <!-- Navigation Buttons -->
+                    <button
+                        class="promo-prev absolute left-0 top-1/2 -translate-y-1/2 -ml-6 z-20 w-12 h-12 rounded-full bg-surface shadow-2xl flex items-center justify-center text-dark hover:bg-primary hover:text-surface transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-10 hidden md:flex">
+                        <i class="fas fa-chevron-left text-sm"></i>
+                    </button>
+                    <button
+                        class="promo-next absolute right-0 top-1/2 -translate-y-1/2 -mr-6 z-20 w-12 h-12 rounded-full bg-surface shadow-2xl flex items-center justify-center text-dark hover:bg-primary hover:text-surface transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-10 hidden md:flex">
+                        <i class="fas fa-chevron-right text-sm"></i>
+                    </button>
                 </div>
             </div>
         </section>
     @endif
 
     <!-- Services Section -->
-    <section id="services" class="py-24 bg-secondary relative">
-        <div class="max-w-7xl mx-auto px-4">
+    <section id="services" class="py-24 bg-secondary relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -ml-48 -mb-48"></div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="text-center mb-20">
                 <h2 class="text-4xl font-heading font-bold text-dark mb-6">Mengapa Memilih Kami?</h2>
                 <div class="w-20 h-1.5 bg-primary mx-auto rounded-full"></div>
@@ -88,9 +110,9 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div
-                    class="group p-10 bg-surface rounded-lg shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
+                    class="group p-10 bg-surface rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
                     <div
-                        class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-colors duration-500">
+                        class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-all duration-500 group-hover:rotate-12">
                         <i class="fas fa-coffee"></i>
                     </div>
                     <h3 class="font-heading font-bold text-2xl mb-4 text-dark">Kualitas Premium</h3>
@@ -99,9 +121,9 @@
                 </div>
 
                 <div
-                    class="group p-10 bg-surface rounded-lg shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
+                    class="group p-10 bg-surface rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
                     <div
-                        class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-colors duration-500">
+                        class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-all duration-500 group-hover:rotate-12">
                         <i class="fas fa-wifi"></i>
                     </div>
                     <h3 class="font-heading font-bold text-2xl mb-4 text-dark">Suasana Nyaman</h3>
@@ -110,9 +132,9 @@
                 </div>
 
                 <div
-                    class="group p-10 bg-surface rounded-lg shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
+                    class="group p-10 bg-surface rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-dark/5 text-center">
                     <div
-                        class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-colors duration-500">
+                        class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary text-4xl mb-8 mx-auto group-hover:bg-primary group-hover:text-surface transition-all duration-500 group-hover:rotate-12">
                         <i class="fas fa-smile"></i>
                     </div>
                     <h3 class="font-heading font-bold text-2xl mb-4 text-dark">Pelayanan Ramah</h3>
@@ -125,71 +147,94 @@
 
     <!-- Reviews Section -->
     <section class="py-24 bg-white relative overflow-hidden" x-data="{ showModal: false }">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
                 <div>
-                    <h2 class="text-4xl font-heading font-bold text-dark mb-2">Kata Mereka</h2>
-                    <p class="text-dark/60">Pengalaman nyata dari pelanggan setia kami.</p>
+                    <h2 class="text-4xl font-heading font-bold text-dark mb-4">Apa Kata <span
+                            class="text-primary">Pelanggan</span></h2>
+                    <p class="text-dark/60">Pengalaman nyata dari mereka yang telah berkunjung.</p>
                 </div>
                 <button @click="showModal = true"
-                    class="bg-dark text-surface px-6 py-3 cursor-pointer rounded-lg font-bold transition-all shadow-lg hover:shadow-dark/30 hover:bg-primary hover:text-surface">
-                    + Beri Ulasan
+                    class="bg-dark text-surface px-8 py-4 rounded-2xl font-bold transition-all shadow-lg hover:shadow-dark/30 hover:bg-primary hover:text-surface flex items-center gap-2">
+                    <i class="fas fa-edit text-sm"></i>
+                    Tulis Ulasan
                 </button>
             </div>
 
             @if (session('success'))
                 <div
-                    class="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-2xl relative mb-10 flex items-center gap-4 animate-bounce">
-                    <i class="fas fa-check-circle text-xl"></i>
+                    class="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-2xl relative mb-10 flex items-center gap-4 animate-fade-in">
+                    <i class="fas fa-check-circle text-xl text-green-500"></i>
                     <span class="font-medium">{{ session('success') }}</span>
                 </div>
             @endif
 
-            <div class="swiper reviewSwiper pb-16">
-                <div class="swiper-wrapper">
-                    @forelse(\App\Models\GeneralReview::where('is_approved', true)->latest()->get() as $rev)
-                        <div class="swiper-slide h-auto">
-                            <div
-                                class="p-8 mb-6 bg-secondary/50 rounded-lg h-full flex flex-col border border-dark/5 shadow-sm transition-all hover:shadow-xl hover:bg-surface group min-h-62.5">
-                                <div class="flex items-center gap-5 mb-8">
-                                    <div
-                                        class="w-16 h-16 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl shadow-inner uppercase transition-colors group-hover:bg-primary group-hover:text-surface">
-                                        {{ substr($rev->name, 0, 1) }}
-                                    </div>
-                                    <div>
-                                        <h3 class="font-heading font-bold text-dark text-xl">{{ $rev->name }}</h3>
-                                        <div class="flex text-primary text-sm mt-1">
-                                            @for ($i = 0; $i < 5; $i++)
-                                                <i class="fas fa-star"></i>
-                                            @endfor
+            <div class="relative group">
+                <div class="swiper reviewSwiper !pb-20 overflow-visible">
+                    <div class="swiper-wrapper">
+                        @forelse(\App\Models\GeneralReview::where('is_approved', true)->latest()->get() as $rev)
+                            <div class="swiper-slide !h-auto">
+                                <div
+                                    class="p-10 bg-secondary/30 rounded-4xl h-full min-h-[280px] flex flex-col border border-dark/5 shadow-sm transition-all duration-500 hover:shadow-2xl hover:bg-surface group/item">
+                                    <div class="flex items-center gap-5 mb-8">
+                                        <div
+                                            class="w-16 h-16 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-2xl shadow-inner uppercase transition-all duration-500 group-hover/item:bg-primary group-hover/item:text-surface group-hover/item:scale-110">
+                                            {{ substr($rev->name, 0, 1) }}
+                                        </div>
+                                        <div>
+                                            <h3 class="font-heading font-bold text-dark text-xl leading-tight line-clamp-1">
+                                                {{ $rev->name }}
+                                            </h3>
+                                            <div class="flex text-primary text-xs mt-1.5 gap-1">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="relative pl-6">
+                                        <i class="fas fa-quote-left absolute top-0 left-0 text-primary/20 text-3xl"></i>
+                                        <p
+                                            class="relative z-10 italic text-dark/70 leading-relaxed text-base line-clamp-4 break-words">
+                                            {{ $rev->review }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <p class="italic text-dark/80 leading-relaxed text-lg break-all overflow-hidden">
-                                    "{{ $rev->review }}"</p>
                             </div>
-                        </div>
-                    @empty
-                        <div
-                            class="w-full text-center py-20 bg-cream/30 rounded-4xl border-2 border-dashed border-gold/30">
-                            <i class="fas fa-comment-slash text-4xl text-gold/50 mb-4 block"></i>
-                            <p class="text-warm-gray font-medium">Belum ada ulasan yang disetujui. Jadilah yang pertama!
-                            </p>
-                        </div>
-                    @endforelse
+                        @empty
+                            <div
+                                class="col-span-full text-center py-20 bg-secondary/20 rounded-4xl border-2 border-dashed border-dark/10">
+                                <i class="fas fa-comment-slash text-4xl text-dark/20 mb-4 block"></i>
+                                <p class="text-dark/40 font-medium">Belum ada ulasan yang disetujui. Jadilah yang pertama!
+                                </p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <div class="swiper-pagination review-pagination mb-4 !-bottom-2"></div>
                 </div>
-                <div class="swiper-pagination mt-10 -mb-1"></div>
+
+                <!-- Navigation Buttons -->
+                <button
+                    class="review-prev absolute left-0 top-1/2 -translate-y-1/2 -ml-6 z-20 w-14 h-14 rounded-full bg-surface shadow-2xl flex items-center justify-center text-dark hover:bg-primary hover:text-surface transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-10 hidden md:flex">
+                    <i class="fas fa-chevron-left text-lg"></i>
+                </button>
+                <button
+                    class="review-next absolute right-0 top-1/2 -translate-y-1/2 -mr-6 z-20 w-14 h-14 rounded-full bg-surface shadow-2xl flex items-center justify-center text-dark hover:bg-primary hover:text-surface transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-10 hidden md:flex">
+                    <i class="fas fa-chevron-right text-lg"></i>
+                </button>
             </div>
         </div>
 
         <!-- Review Modal -->
         <div x-show="showModal"
             class="fixed inset-0 z-100 flex items-center justify-center bg-dark/80 backdrop-blur-md px-4"
-            x-transition.opacity style="display: none;" x-cloak>
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;" x-cloak>
             <div class="bg-surface rounded-4xl shadow-2xl p-10 w-full max-w-xl relative overflow-hidden"
-                @click.away="showModal = false">
+                @click.away="showModal = false" x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0 scale-90 translate-y-10"
+                x-transition:enter-end="opacity-100 scale-100 translate-y-0">
                 <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
                 <button @click="showModal = false"
                     class="absolute top-6 right-6 text-dark/40 hover:text-dark text-3xl transition-transform hover:rotate-90">&times;</button>
@@ -200,31 +245,58 @@
                 <form action="{{ route('review.store') }}" method="POST" class="space-y-6">
                     @csrf
                     <div>
-                        <label class="block text-dark text-sm font-bold mb-3 uppercase tracking-wider">Nama
-                            Anda</label>
+                        <label class="block text-dark text-sm font-bold mb-3 uppercase tracking-wider">Nama Anda</label>
                         <input type="text" name="name" required
-                            class="w-full px-6 py-4 rounded-2xl bg-secondary/50 border border-dark/10 focus:border-primary focus:bg-surface outline-none transition-all"
+                            class="w-full px-6 py-4 rounded-2xl bg-secondary/50 border border-dark/10 focus:border-primary focus:bg-surface outline-none transition-all shadow-sm"
                             placeholder="Masukkan nama lengkap...">
                     </div>
 
                     <div>
                         <label class="block text-dark text-sm font-bold mb-3 uppercase tracking-wider">Ulasan</label>
                         <textarea name="review" rows="5" required
-                            class="w-full px-6 py-4 rounded-2xl bg-secondary/50 border border-dark/10 focus:border-primary focus:bg-surface outline-none transition-all"
+                            class="w-full px-6 py-4 rounded-2xl bg-secondary/50 border border-dark/10 focus:border-primary focus:bg-surface outline-none transition-all shadow-sm"
                             placeholder="Tuliskan komentar Anda di sini..."></textarea>
                     </div>
 
                     <button type="submit"
-                        class="w-full bg-dark text-surface font-bold py-5 rounded-lg cursor-pointer hover:bg-primary hover:text-surface transition-all shadow-lg shadow-primary/20 hover:shadow-dark/20 uppercase tracking-widest">
-                        Kirim Ulasan
+                        class="w-full bg-primary text-surface font-bold py-5 rounded-2xl cursor-pointer hover:bg-dark transition-all shadow-lg shadow-primary/20 uppercase tracking-widest text-sm">
+                        Kirim Ulasan Sekarang
                     </button>
                 </form>
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
+                // Promo Swiper
+                new Swiper(".promoSwiper", {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    centeredSlides: false,
+                    autoplay: {
+                        delay: 6000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: ".promo-pagination",
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: ".promo-next",
+                        prevEl: ".promo-prev",
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 1.5,
+                        },
+                        1024: {
+                            slidesPerView: 2,
+                        },
+                    },
+                });
+
+                // Review Swiper
                 new Swiper(".reviewSwiper", {
                     slidesPerView: 1,
                     spaceBetween: 30,
@@ -234,8 +306,12 @@
                         disableOnInteraction: false,
                     },
                     pagination: {
-                        el: ".swiper-pagination",
+                        el: ".review-pagination",
                         clickable: true,
+                    },
+                    navigation: {
+                        nextEl: ".review-next",
+                        prevEl: ".review-prev",
                     },
                     breakpoints: {
                         768: {
