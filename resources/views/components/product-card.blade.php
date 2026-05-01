@@ -34,11 +34,16 @@
                 </p>
             </div>
             {{-- TODO: Implement cart functionality --}}
-            <a href="{{ route('product.detail', $product->slug) }}"
+            <button @click="$store.cart.addToCart({ 
+                id: {{ $product->id }}, 
+                name: '{{ $product->name }}', 
+                price: {{ $product->price }}, 
+                image: '{{ asset('storage/' . ($product->images->first()?->image_path ?? 'default.jpg')) }}' 
+            })"
                 class="text-primary cursor-pointer transition-all duration-300 transform hover:scale-110 active:scale-95"
-                aria-label="Add to cart / View detail">
+                aria-label="Add to cart">
                 <i class="fas fa-plus-circle text-5xl"></i>
-            </a>
+            </button>
         </div>
     </div>
 </div>
