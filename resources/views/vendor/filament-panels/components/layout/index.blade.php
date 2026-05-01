@@ -8,7 +8,9 @@
     $isSidebarFullyCollapsibleOnDesktop = filament()->isSidebarFullyCollapsibleOnDesktop();
     $hasTopNavigation = filament()->hasTopNavigation();
     $hasNavigation = filament()->hasNavigation();
-    $renderHookScopes = $livewire?->getRenderHookScopes();
+    $renderHookScopes = (isset($livewire) && is_object($livewire) && method_exists($livewire, 'getRenderHookScopes')) 
+        ? $livewire->getRenderHookScopes() 
+        : [];
     $maxContentWidth ??= (filament()->getMaxContentWidth() ?? Width::SevenExtraLarge);
 
     if (is_string($maxContentWidth)) {

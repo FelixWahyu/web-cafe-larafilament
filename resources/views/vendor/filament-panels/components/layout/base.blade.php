@@ -3,7 +3,9 @@
 ])
 
 @php
-    $renderHookScopes = $livewire?->getRenderHookScopes();
+    $renderHookScopes = (isset($livewire) && is_object($livewire) && method_exists($livewire, 'getRenderHookScopes')) 
+        ? $livewire->getRenderHookScopes() 
+        : [];
 @endphp
 
 <!DOCTYPE html>

@@ -2,7 +2,9 @@
     use Filament\Support\Enums\Width;
 
     $livewire ??= null;
-    $renderHookScopes = $livewire?->getRenderHookScopes();
+    $renderHookScopes = (isset($livewire) && is_object($livewire) && method_exists($livewire, 'getRenderHookScopes')) 
+        ? $livewire->getRenderHookScopes() 
+        : [];
     $maxContentWidth ??= (filament()->getSimplePageMaxContentWidth() ?? Width::Large);
 
     if (is_string($maxContentWidth)) {
