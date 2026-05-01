@@ -109,7 +109,8 @@
                                     <li class="flex py-6 transition-all">
                                         <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-2xl border border-dark/5 shadow-sm">
                                             <img :src="item.image" :alt="item.name"
-                                                class="h-full w-full object-cover object-center">
+                                                class="h-full w-full object-cover object-center"
+                                                onerror="this.src='https://placehold.co/400x400?text=Produk'">
                                         </div>
 
                                         <div class="ml-4 flex flex-1 flex-col">
@@ -168,6 +169,26 @@
         </div>
     </div>
 
+    {{-- Toast Notifications --}}
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[200] flex flex-col gap-3 w-full max-w-sm px-4">
+        <template x-for="note in $store.cart.notifications" :key="note.id">
+            <div x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4"
+                class="bg-dark text-surface px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-primary/20">
+                <div class="bg-primary/20 p-2 rounded-full">
+                    <i class="fas fa-check text-primary"></i>
+                </div>
+                <p class="font-medium flex-1" x-text="note.message"></p>
+                <button @click="$store.cart.notifications = $store.cart.notifications.filter(n => n.id !== note.id)"
+                    class="text-surface/40 hover:text-surface">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </template>
+    </div>
+
     <footer class="bg-dark text-secondary pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="col-span-1 md:col-span-2">
@@ -221,9 +242,18 @@
         document.addEventListener('alpine:init', () => {
             Alpine.store('cart', {
                 items: JSON.parse(localStorage.getItem('cafe_cart') || '[]'),
+                notifications: [],
                 
                 save() {
                     localStorage.setItem('cafe_cart', JSON.stringify(this.items));
+                },
+
+                notify(message) {
+                    let id = Date.now();
+                    this.notifications.push({ id, message });
+                    setTimeout(() => {
+                        this.notifications = this.notifications.filter(n => n.id !== id);
+                    }, 3000);
                 },
                 
                 addToCart(product) {
@@ -234,7 +264,7 @@
                         this.items.push({ ...product, qty: 1 });
                     }
                     this.save();
-                    // Custom notification logic can be added here
+                    this.notify(`${product.name} berhasil ditambahkan ke keranjang!`);
                 },
                 
                 updateQty(id, qty) {
@@ -265,6 +295,12 @@
                 checkout(adminPhone) {
                     if (this.items.length === 0) return;
                     
+                    // Format phone: remove non-digits, replace leading 0 with 62
+                    let cleanPhone = adminPhone.replace(/\D/g, '');
+                    if (cleanPhone.startsWith('0')) {
+                        cleanPhone = '62' + cleanPhone.substring(1);
+                    }
+
                     let message = "Halo Lav-Cafe, saya ingin memesan:\n\n";
                     this.items.forEach(item => {
                         message += `• ${item.qty}x ${item.name} - Rp ${new Intl.NumberFormat('id-ID').format(item.price * item.qty)}\n`;
@@ -273,7 +309,7 @@
                     message += `\n\nMohon informasi selanjutnya untuk proses pembayaran dan pengiriman. Terima kasih!`;
                     
                     let encodedMsg = encodeURIComponent(message);
-                    window.open(`https://wa.me/${adminPhone}?text=${encodedMsg}`, '_blank');
+                    window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, '_blank');
                 }
             });
         });

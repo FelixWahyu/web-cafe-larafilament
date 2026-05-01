@@ -36,7 +36,7 @@
             {{-- TODO: Implement cart functionality --}}
             <button @click="$store.cart.addToCart({ 
                 id: {{ $product->id }}, 
-                name: '{{ $product->name }}', 
+                name: @js($product->name), 
                 price: {{ $product->price }}, 
                 image: '{{ asset('storage/' . ($product->images->first()?->image_path ?? 'default.jpg')) }}' 
             })"
