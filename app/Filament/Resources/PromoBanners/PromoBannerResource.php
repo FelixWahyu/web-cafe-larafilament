@@ -46,9 +46,18 @@ class PromoBannerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            ImageColumn::make('image_path')->label('Banner'),
-            TextColumn::make('title')->label('Judul Promo')->searchable(),
-            IconColumn::make('is_active')->label('Status Aktif')->boolean(),
+            ImageColumn::make('image_path')
+                ->label('Banner')
+                ->disk('public')
+                ->square(),
+            TextColumn::make('title')
+                ->label('Judul Promo')
+                ->searchable()
+                ->sortable(),
+            IconColumn::make('is_active')
+                ->label('Status Aktif')
+                ->boolean()
+                ->sortable(),
         ]);
     }
 
