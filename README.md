@@ -1,59 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ☕ Lav Cafe
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Lav Cafe adalah platform e-commerce dan katalog digital untuk sebuah kedai kopi (cafe) modern. Dibangun menggunakan framework Laravel, website ini menyediakan antarmuka pengguna (frontend) yang elegan dan responsif, serta panel admin (backend) yang kuat untuk mengelola produk, pesanan, dan ulasan pelanggan.
 
-## About Laravel
+## ✨ Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Katalog & Detail Produk:** Menampilkan daftar produk dengan desain yang memukau. Halaman detail produk dilengkapi dengan galeri gambar dan daftar komposisi (ingredients).
+- **Shopping Cart (Keranjang Belanja):** Sistem keranjang belanja berbasis _client-side_ menggunakan Alpine.js dan session/local storage, lengkap dengan komponen UI _slide-over_.
+- **Checkout via WhatsApp:** Integrasi langsung yang memungkinkan pelanggan mengirimkan detail pesanan keranjang mereka langsung ke WhatsApp admin/kasir.
+- **Sistem Ulasan (Review):** Pelanggan dapat melihat ulasan produk dengan fitur _star rating_ dan avatar inisial otomatis.
+- **Slider Promosi:** Banner promosi interaktif dan responsif di halaman beranda menggunakan Swiper.js.
+- **Admin Panel Premium:** Backend panel menggunakan Filament dengan kustomisasi halaman login (Split-screen design) yang disesuaikan dengan branding cafe.
+- **UI/UX Modern:** Desain antarmuka premium dengan efek _glassmorphism_, palet warna yang elegan (termasuk pink, white, dan warna bertema kopi), serta optimalisasi animasi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Teknologi & Library yang Digunakan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Backend:**
+- [Laravel](https://laravel.com/) (Framework PHP)
+- [Filament](https://filamentphp.com/) (Admin Panel)
+- [Livewire](https://laravel-livewire.com/) (Komponen interaktif untuk Filament)
 
-## Learning Laravel
+**Frontend:**
+- [Tailwind CSS v4](https://tailwindcss.com/) (Styling & Utility-first CSS)
+- [Alpine.js](https://alpinejs.dev/) (Reaktivitas UI & State Management Keranjang Belanja)
+- [Swiper.js](https://swiperjs.com/) (Slider Banner Promosi & Ulasan)
+- [Vite](https://vitejs.dev/) (Frontend Build Tool)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 📂 Struktur Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Berikut adalah gambaran umum dari struktur direktori utama di dalam project ini:
 
-## Laravel Sponsors
+```text
+lav-cafe/
+├── app/
+│   ├── Http/Controllers/     # Logika aplikasi (Frontend Controllers)
+│   ├── Models/               # Representasi tabel database
+│   └── Filament/             # Resources untuk halaman admin panel
+├── database/
+│   ├── migrations/           # Skema tabel database
+│   └── seeders/              # Data awal (dummy/initial data)
+├── public/                   # File publik (gambar, build assets Vite)
+├── resources/
+│   ├── css/                  # File CSS utama (Tailwind)
+│   ├── js/                   # File JavaScript utama
+│   └── views/
+│       ├── components/       # Komponen Blade UI (Navbar, Product Card, dll)
+│       ├── frontend/         # Halaman untuk pengunjung (Home, Catalog, Detail)
+│       └── ...
+├── routes/
+│   └── web.php               # Definisi rute URL website
+└── ...
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Cara Install & Menjalankan Project (Lokal)
 
-### Premium Partners
+Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer lokal Anda:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Clone repositori ini:**
+   ```bash
+   git clone <url-repo-ini>
+   cd lav-cafe
+   ```
 
-## Contributing
+2. **Install dependensi PHP (Composer):**
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Install dependensi Node.js (NPM):**
+   ```bash
+   npm install
+   ```
 
-## Code of Conduct
+4. **Siapkan konfigurasi environment:**
+   Salin file `.env.example` menjadi `.env`.
+   ```bash
+   cp .env.example .env
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
 
-## Security Vulnerabilities
+6. **Konfigurasi Database:**
+   Buka file `.env` dan sesuaikan konfigurasi database Anda (misalnya MySQL atau SQLite).
+   Contoh jika menggunakan database lokal MySQL:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=lav_cafe
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. **Jalankan Migrasi & Seeder Database:**
+   Buat tabel database dan masukkan data awal.
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## License
+8. **Buat Symlink untuk Storage (Penting untuk gambar produk):**
+   ```bash
+   php artisan storage:link
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+9. **Jalankan Server Development:**
+   Jalankan server PHP lokal dan Vite untuk _hot-reloading_ aset frontend secara bersamaan.
+   
+   Buka terminal pertama:
+   ```bash
+   php artisan serve
+   ```
+   
+   Buka terminal kedua:
+   ```bash
+   npm run dev
+   ```
+   Atau jika menggunakan command bawaan yang ada di composer:
+   ```bash
+   composer run dev
+   ```
+
+10. **Akses Website:**
+    - Frontend (Katalog Cafe): [http://127.0.0.1:8000](http://127.0.0.1:8000)
+    - Admin Panel (Filament): [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) *(Catatan: URL admin dapat berbeda sesuai konfigurasi `filament.php`)*
+
+---
+
+*Dikembangkan untuk memberikan pengalaman digital kafe yang memukau.*
