@@ -44,16 +44,17 @@
 
             <!-- Actions -->
             <div class="flex items-center gap-4">
-                <a href="#" class="relative p-2 text-dark/70 hover:text-primary transition-colors"
+                <button @click="isCartOpen = true" class="relative p-2 text-dark/70 hover:text-primary transition-colors"
                     aria-label="Keranjang Belanja">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z">
                         </path>
                     </svg>
-                    <span
-                        class="absolute top-0 right-0 bg-primary text-surface text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
-                </a>
+                    <span x-show="$store.cart.totalCount > 0" x-cloak
+                        class="absolute top-0 right-0 bg-primary text-surface text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+                        x-text="$store.cart.totalCount"></span>
+                </button>
 
                 <!-- Mobile Menu Button -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen"

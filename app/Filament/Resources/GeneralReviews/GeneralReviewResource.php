@@ -25,6 +25,10 @@ class GeneralReviewResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ChatBubbleLeftEllipsis;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Ulasan Pelanggan';
+
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
