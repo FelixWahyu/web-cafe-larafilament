@@ -26,6 +26,10 @@ class ProductReviewResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Star;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Ulasan Pelanggan';
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema

@@ -31,6 +31,10 @@ class ProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingBag;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Manajemen Toko';
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $form):Schema

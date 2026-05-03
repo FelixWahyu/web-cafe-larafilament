@@ -23,6 +23,10 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $setting = \App\Models\Setting::first();
+        $brandName = $setting?->business_name ?? 'Lav Cafe';
+        $brandLogo = $setting?->logo ? asset('storage/' . $setting->logo) : null;
+
         return $panel
             ->default()
             ->id('admin')
@@ -30,10 +34,16 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->profile()
             ->spa()
-            ->sidebarCollapsibleOnDesktop()
+            ->brandName($brandName)
+            // ->brandLogo($brandLogo)
+            // ->brandLogoHeight('2.5rem')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Gray,
+                'gray' => Color::Zinc,
             ])
+            ->font('Outfit')
+            ->sidebarCollapsibleOnDesktop()
+            ->maxContentWidth('full')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
