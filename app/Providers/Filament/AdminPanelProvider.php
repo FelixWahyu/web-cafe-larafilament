@@ -23,9 +23,14 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        $setting = \App\Models\Setting::first();
-        $brandName = $setting?->business_name ?? 'Lav Cafe';
-        $brandLogo = $setting?->logo ? asset('storage/' . $setting->logo) : null;
+        try {
+            $setting = \App\Models\Setting::first();
+            $brandName = $setting?->business_name ?? 'Lav Cafe';
+            $brandLogo = $setting?->logo ? asset('storage/' . $setting->logo) : null;
+        } catch (\Throwable $e) {
+            $brandName = 'Lav Cafe';
+            $brandLogo = null;
+        }
 
         return $panel
             ->default()

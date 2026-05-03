@@ -33,7 +33,7 @@
                     {{ number_format($product->price, 0, ',', '.') }}
                 </p>
             </div>
-            {{-- TODO: Implement cart functionality --}}
+
             <button @click="$store.cart.addToCart({ 
                 id: {{ $product->id }}, 
                 name: @js($product->name), 
